@@ -1,9 +1,14 @@
 /* Easter egg 1: Darkmode-switch */
-
-const darkMode = document.getElementById("darkmode");
-darkMode.addEventListener("click", () => {
-  document.body.classList.toggle("darkmode")
-})
+const isDarkModePreferred = localStorage.getItem('darkMode');
+if (isDarkModePreferred === 'true') {
+  document.body.classList.add('darkmode');
+}
+const darkModeSwitch = document.getElementById('darkmode-switch');
+darkModeSwitch.addEventListener('click', () => {
+  document.body.classList.toggle('darkmode');
+  localStorage.setItem('darkMode', document.body.classList.contains('darkmode'));
+  darkModeSwitch.src = document.body.classList.contains('darkmode') ? './Images/profile-pic-blackandwhite.png' : './Images/profile-pic-color.png';
+});
 
 
 /* Easter egg 2: Write "coffee" to generate message */
